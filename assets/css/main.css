@@ -1,0 +1,68 @@
+/* Paradigm Shift Exact Recreation */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: "Source Sans Pro", sans-serif; 
+    background-color: #ffffff; 
+    color: #585858; 
+}
+
+/* Navigation Overlay */
+nav {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3.5rem;
+    line-height: 3.5rem; background: #ffffff; text-align: center;
+    border-bottom: solid 2px #eeeeee; z-index: 10000;
+}
+nav a { color: #585858; text-decoration: none; margin: 0 1.5rem; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1rem; }
+nav a:hover { color: #00d4ff; }
+
+/* Wrapper & Sections */
+#wrapper { padding-top: 3.5rem; }
+
+section {
+    display: flex;
+    min-height: 100vh;
+    border-top: solid 2px #eeeeee;
+}
+
+section:first-child { border-top: 0; }
+
+/* The "Side" Header */
+section > header {
+    flex: 1;
+    padding: 6rem 4rem;
+    background-color: #1b1b1b;
+    color: #ffffff;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+section > header h1, section > header h2 { 
+    font-size: 2.5rem; line-height: 1.25; margin-bottom: 1rem; 
+}
+
+section > header p { color: rgba(255, 255, 255, 0.5); font-style: italic; }
+
+/* The "Content" Side */
+section > .content {
+    flex: 1.5;
+    padding: 6rem 4rem;
+    background-color: #ffffff;
+}
+
+/* Image Handling */
+.image.fill { display: block; width: 100%; height: 100%; }
+.image.fill img { width: 100%; height: 100%; object-fit: cover; }
+.image.main { display: block; margin: 0 0 3rem 0; width: 100%; }
+.image.main img { width: 100%; }
+
+/* Mobile View (Stacks the sides) */
+@media screen and (max-width: 980px) {
+    section { flex-direction: column; }
+    section > header { text-align: center; padding: 4rem 2rem; }
+    section > .content { padding: 4rem 2rem; }
+}
