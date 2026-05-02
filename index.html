@@ -1,23 +1,460 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-    <title>Paradigm | Home</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paradigm Shift</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242424;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #ff3e3e;
+            --border: #333333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Header / Hero Section */
+        header {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+        }
+
+        header p a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .scroll-link {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        h4 {
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin: 2rem 0 1rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        p strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Image Placeholders */
+        .image-container {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #333333 0%, #222222 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin: 2rem 0;
+        }
+
+        .image-placeholder.small {
+            height: 250px;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        ul li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Grid for features */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-item {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-info {
+            padding: 0 2rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .contact-list li strong {
+            display: block;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <div id="wrapper">
-        <section>
-            <header><h1>Paradigm Shift</h1><p>Recreated Site</p></header>
-            <div class="content"><div class="image fill"><img src="images/01.jpg"></div></div>
+    <header>
+        <h1>Paradigm Shift</h1>
+        <p>A free responsive site template designed by <a href="https://twitter.com/ajlkn" target="_blank">@ajlkn</a> / <a href="https://html5up.net" target="_blank">HTML5 UP</a></p>
+        <a href="#first" class="scroll-link">Next</a>
+    </header>
+
+    <main>
+        <section id="first">
+            <div class="content">
+                <h2>Magna sed nullam nisl adipiscing</h2>
+                <p><strong>Lorem ipsum dolor</strong> sit amet consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
+                
+                <div class="image-placeholder">Image Placeholder</div>
+            </div>
         </section>
-    </div>
+
+        <section>
+            <div class="content">
+                <h2>Feugiat consequat tempus ultrices</h2>
+                <p><strong>Etiam tristique libero</strong> eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum.</p>
+                
+                <ul>
+                    <li>Consequat tempus</li>
+                    <li>Etiam adipiscing</li>
+                    <li>Libero nullam</li>
+                    <li>Blandit condimentum</li>
+                    <li>Lorem ipsum dolor</li>
+                    <li>Nibh amet venenatis</li>
+                </ul>
+                
+                <p>Vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="content">
+                <h2>Ultrices erat magna sed condimentum</h2>
+                <p><strong>Integer mollis egestas</strong> nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <h3>Erat aliquam</h3>
+                        <p>Vehicula ultrices dolor amet ultricies et condimentum. Magna sed etiam consequat, et lorem adipiscing sed dolor sit amet, consectetur amet do eiusmod tempor incididunt ipsum suspendisse ultrices gravida.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Nisl consequat</h3>
+                        <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam sed facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet mauris. Ut magna finibus nisi nec lacinia ipsum maximus.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h3>Lorem gravida</h3>
+                        <p>Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aenean ornare velit lacus, ac varius sed enim lorem ullamcorper dolore.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="content">
+                <h2>Duis sed adipiscing veroeros amet</h2>
+                <p><strong>Proin tempus feugiat</strong> sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore.</p>
+                
+                <div class="btn-group">
+                    <a href="#" class="btn">Get Started</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="content">
+                <h2>Get in touch</h2>
+                <p><strong>Auctor commodo</strong> interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <form>
+                            <textarea name="message" placeholder="Message"></textarea>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3>Contact Info</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <strong>Email</strong>
+                                <a href="mailto:information@untitled.ext">information@untitled.ext</a>
+                            </li>
+                            <li>
+                                <strong>Phone</strong>
+                                <span>(000) 000-0000</span>
+                            </li>
+                            <li>
+                                <strong>Address</strong>
+                                <span>1234 Somewhere Road, Nashville, TN 00000</span>
+                            </li>
+                        </ul>
+                        
+                        <h4>Elsewhere</h4>
+                        <div class="social-links">
+                            <a href="#">Twitter</a>
+                            <a href="#">Facebook</a>
+                            <a href="#">Instagram</a>
+                            <a href="#">LinkedIn</a>
+                            <a href="#">GitHub</a>
+                            <a href="#">Codepen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Untitled. All rights reserved. Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></p>
+    </footer>
 </body>
 </html>
